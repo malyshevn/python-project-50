@@ -4,10 +4,12 @@ version = "0.1.0"
 description = ""
 authors = ["Nikita Malyshev <babyswisha@mail.ru>"]
 readme = "README.md"
-packages = [{include = "hexlet_code"}]
+packages = [{include = "gendiff"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pytest = "^7.4.2"
+flake8 = "^6.1.0"
 
 
 [build-system]
@@ -15,4 +17,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-gendiff = "hexlet_code.scripts.gendiff:main"
+gendiff = "gendiff.scripts.gendiff:main"

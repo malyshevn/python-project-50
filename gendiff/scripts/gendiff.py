@@ -1,13 +1,15 @@
 import argparse
 import json
 
+
 def main():
     parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help = 'set format of output')
+    parser.add_argument('-f', '--format', help='set format of output')
     args = parser.parse_args()
     print(generate_diff(args.first_file, args.second_file))
+
 
 def generate_diff(file_path_1, file_path_2):
     with open(file_path_1) as file1, open(file_path_2) as file2:
@@ -30,6 +32,7 @@ def generate_diff(file_path_1, file_path_2):
             diff.append(f"+ {key}: {data2[key]}")
 
     return '\n'.join(diff)
+
 
 if __name__ == "__main__":
     main()
