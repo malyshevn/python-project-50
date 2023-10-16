@@ -9,7 +9,7 @@ jobs:
     steps: # список шагов, которые надо выполнить
       # экшен — выполняет какую-то задачу
       # checkout — клонирует репозиторий
-      - uses: actions
+      - uses: actions/checkout@v3
       # run – произвольная bash-команда
       # ls -la выведет содержимое текущего репозитория
       - run: make say-hello
