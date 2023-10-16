@@ -10,5 +10,5 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 lint:
 	poetry run flake8 gendiff
-test:
-	print("Hello, World!")
+say-hello:
+	echo "Hello, World!"
