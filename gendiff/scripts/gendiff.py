@@ -1,39 +1,30 @@
-import argparse
-import json
+from parser import parser, load_data
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description='Compares two configuration files and shows a difference.'
-        )
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument('-f', '--format', help='set format of output')
-    args = parser.parse_args()
-    print(generate_diff(args.first_file, args.second_file))
-
+    args = parser()
+    print(generate_diff(args.file_path_1, args.file_path_2))
 
 def generate_diff(file_path_1, file_path_2):
-    with open(file_path_1) as file1, open(file_path_2) as file2:
-        data1 = json.load(file1)
-        data2 = json.load(file2)
+        data1 = load_data(file_path_1)
+        data2 = load_data(file_path_2)
 
-    keys = sorted(set(data1.keys()) | set(data2.keys()))
-    diff = []
+        keys = sorted(set(data1.keys()) | set(data2.keys()))
+        diff = []
 
-    for key in keys:
-        if key in data1 and key in data2:
-            if data1[key] == data2[key]:
-                diff.append(f"  {key}: {data1[key]}")
-            else:
+        for key in keys:
+            if key in data1 and key in data2:
+                if data1[key] == data2[key]:
+                    diff.append(f"  {key}: {data1[key]}")
+                else:
+                    diff.append(f"- {key}: {data1[key]}")
+                    diff.append(f"+ {key}: {data2[key]}")
+            elif key in data1:
                 diff.append(f"- {key}: {data1[key]}")
+            else:
                 diff.append(f"+ {key}: {data2[key]}")
-        elif key in data1:
-            diff.append(f"- {key}: {data1[key]}")
-        else:
-            diff.append(f"+ {key}: {data2[key]}")
 
-    return '\n'.join(diff)
+        return diff
 
 
 if __name__ == "__main__":
