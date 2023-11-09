@@ -1,4 +1,4 @@
-from parser import parser, load_data
+from gendiff.parser import parser, load_data
 
 
 def main():
