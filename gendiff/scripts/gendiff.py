@@ -25,7 +25,7 @@ def generate_diff(file_path_1, file_path_2):
         else:
             diff.append(f"+ {key}: {data2[key]}")
 
-        return diff
+    return diff
 
 
 if __name__ == "__main__":

@@ -7,9 +7,16 @@ def test_generate_diff():
     file2 = './tests/fixtures/file2.json'
     result = './tests/fixtures/result.json'
 
+    generated_diff = generate_diff(file1, file2)
     with open(result, 'r') as new_result_file:
-        new_result = new_result_file.read().splitlines()
-        assert generate_diff(file1, file2)== new_result
+        expected_result = new_result_file.read().splitlines()
+
+    print("Generated Diff:")
+    print(generated_diff)
+    print("Expected Result:")
+    print(expected_result)
+
+    assert generated_diff == expected_result
 
 
 def test_generate_diff_yaml():
@@ -17,6 +24,13 @@ def test_generate_diff_yaml():
     file2 = './tests/fixtures/file2.yaml'
     result = './tests/fixtures/result.txt'
 
+    generated_diff = generate_diff(file1, file2)
     with open(result, 'r') as new_result_file:
-        new_result = new_result_file.read().splitlines()
-        assert generate_diff(file1, file2) == new_result
+        expected_result = new_result_file.read().splitlines()
+
+    print("Generated Diff:")
+    print(generated_diff)
+    print("Expected Result:")
+    print(expected_result)
+
+    assert generated_diff == expected_result

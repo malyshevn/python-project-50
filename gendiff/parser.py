@@ -22,7 +22,7 @@ def load_data(file_path):
     if extension == '.json':
         with open(file_path) as file:
             return json.load(file)
-    elif extension == '.yaml' or ".yml":
+    elif extension == '.yaml' or extension == '.yml':
         with open(file_path) as file:
             return yaml.load(file, Loader=yaml.Loader)
     else:
