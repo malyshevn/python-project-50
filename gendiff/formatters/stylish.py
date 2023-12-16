@@ -13,7 +13,9 @@ def make_stylish(diff):
 
 def format_diff(diff, depth):
     lines = [make_line(elem, depth) if isinstance(elem, dict) else
-             make_line({"key": elem, "status": "equal", "old_value": diff.get(elem)}, depth)
+             make_line({"key": elem,
+                        "status": "equal",
+                        "old_value": diff.get(elem)}, depth)
              for elem in diff]
 
     final_result = chain("{", lines, [f"{STEP_INDENT * depth}" + "}"])
@@ -76,6 +78,7 @@ def get_old_value(elem):
 
 def get_new_value(elem):
     return elem["new_value"]
+
 
 def resolve_value(diff, depth):
     if isinstance(diff, (dict, list)):

@@ -1,7 +1,7 @@
 import os
 
-from gendiff.formatters.stylish import get_status, get_key, get_nested, is_nested, get_old_value, \
-    get_new_value
+from gendiff.formatters.stylish import get_status, get_key, get_nested, \
+    is_nested, get_old_value, get_new_value
 
 
 def resolve_value(value):
@@ -20,7 +20,7 @@ def make_plain(diff):
     def walk(items, path):
         for item in items:
             item_path = os.path.join(path, get_key(item))
-            item_path = os.path.normpath(item_path).replace("/", ".")  # for Windows
+            item_path = os.path.normpath(item_path).replace("/", ".")
             if is_nested(item):
                 walk(get_nested(item), item_path)
             else:
