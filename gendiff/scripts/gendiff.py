@@ -1,5 +1,5 @@
 from gendiff.parser import parser, load_data
-from gendiff.formatters import make_stylish, make_plain, make_json
+from gendiff.formatters import make_stylish, make_plain, format_json
 from gendiff.create_diff import create_diff
 
 
