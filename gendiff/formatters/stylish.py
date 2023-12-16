@@ -7,7 +7,7 @@ START_DEPTH = 0
 STEP_INSIDE = 1
 
 
-def format_stylish(diff):
+def make_stylish(diff):
     return format_diff(diff, START_DEPTH)
 
 
