@@ -3,7 +3,7 @@
 <a href="https://codeclimate.com/github/malyshevn/python-project-50/maintainability"><img src="https://api.codeclimate.com/v1/badges/89f1fbfb774e33d38001/maintainability" /></a>
 <a href="https://codeclimate.com/github/malyshevn/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/89f1fbfb774e33d38001/test_coverage" /></a>
 
-###Generate difference
+### Generate difference
 CLI tool generating the difference between two files with specified formats (JSON/YML)
 
 <a href="https://asciinema.org/a/7lu0zCMSbyqobMxt2MgZTUJwB" target="_blank"><img src="https://asciinema.org/a/7lu0zCMSbyqobMxt2MgZTUJwB.svg" /></a>
