@@ -1,5 +1,5 @@
 from itertools import chain
-
+from gendiff.utils import resolve_none_and_boolean
 
 INDENT = '  '
 STEP_INDENT = '    '
@@ -83,4 +83,4 @@ def get_new_value(elem):
 def resolve_value(diff, depth):
     if isinstance(diff, (dict, list)):
         return format_diff(diff, depth + STEP_INSIDE)
-    return str(diff)
+    return resolve_none_and_boolean(diff)

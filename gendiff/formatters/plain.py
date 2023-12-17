@@ -1,4 +1,7 @@
+from gendiff.utils import resolve_none_and_boolean
 import os
+
+
 
 from gendiff.formatters.stylish import get_status, get_key, get_nested, \
     is_nested, get_old_value, get_new_value
@@ -11,7 +14,7 @@ def resolve_value(value):
     elif isinstance(value, dict):
         return '[complex value]'
 
-    return value
+    return resolve_none_and_boolean(value)
 
 
 def make_plain(diff):
