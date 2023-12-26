@@ -11,8 +11,7 @@ CLI tool generating the difference between two files with specified formats (JSO
 ### Download:
 `pip install --user git+https://github.com/malyshevn/python-project-50`
 
-### Usage:
-gendiff [-h] [-f FORMAT] first_file second_file
+### Usage: gendiff [-h] [-f FORMAT] first_file second_file
 
 Compares two configuration files and shows a difference.
 
