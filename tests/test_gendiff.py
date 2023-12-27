@@ -1,6 +1,4 @@
 from gendiff import generate_diff
-import pytest
-import yaml
 
 
 def test_generate_diff():
