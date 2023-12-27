@@ -34,13 +34,15 @@ def test_nested_json():
     with open(result, 'r') as new_result_file:
         expected_result = new_result_file.read()
 
+    assert generated_diff == expected_result
+
 
 def test_nested_plain():
     file1 = './tests/fixtures/tree1.json'
     file2 = './tests/fixtures/tree2.json'
     result = './tests/fixtures/flat_result'
 
-    generated_diff = generate_diff(file1, file2,format_name="plain")
+    generated_diff = generate_diff(file1, file2, format_name="plain")
     with open(result, 'r') as new_result_file:
         expected_result = new_result_file.read()
 
@@ -52,7 +54,7 @@ def test_nested_json():
     file2 = './tests/fixtures/tree2.json'
     result = './tests/fixtures/json_result.json'
 
-    generated_diff = generate_diff(file1, file2,format_name="json")
+    generated_diff = generate_diff(file1, file2, format_name="json")
     with open(result, 'r') as new_result_file:
         expected_result = new_result_file.read()
 
