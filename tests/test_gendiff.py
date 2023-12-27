@@ -25,7 +25,7 @@ def test_generate_diff_yaml():
     assert generated_diff == expected_result
 
 
-def test_nested_stylish():
+def test_nested_json():
     file1 = './tests/fixtures/tree1.json'
     file2 = './tests/fixtures/tree2.json'
     result = './tests/fixtures/result_tree'
