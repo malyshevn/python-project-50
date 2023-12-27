@@ -16,8 +16,8 @@ def test_generate_diff():
 
 
 def test_generate_diff_yaml():
-    file1 = './tests/fixtures/file1.yaml'
-    file2 = './tests/fixtures/file2.yaml'
+    file1 = './tests/fixtures/file1.yml'
+    file2 = './tests/fixtures/file2.yml'
     result = './tests/fixtures/result'
 
     generated_diff = generate_diff(file1, file2, format_name="stylish")
