@@ -23,61 +23,41 @@ def format_diff(diff, depth):
 
 
 def make_line(diff, depth):
-    key = get_key(diff)
-    status = get_status(diff)
+    key = diff["key"]
+    status = diff["status"]
     indent = f"{INDENT}{STEP_INDENT * depth}"
 
     if status == "equal":
-        old_value = get_old_value(diff)
+        old_value = diff.get("old_value")
         value = resolve_value(old_value, depth)
         return f"{indent}  {key}: {value}"
 
     elif status == "added":
-        new_value = get_new_value(diff)
+        new_value = diff.get("new_value")
         value = resolve_value(new_value, depth)
         return f"{indent}+ {key}: {value}"
 
     elif status == "removed":
-        old_value = get_old_value(diff)
+        old_value = diff.get("old_value")
         value = resolve_value(old_value, depth)
         return f"{indent}- {key}: {value}"
 
     elif status == "updated":
-        old_value = get_old_value(diff)
+        old_value = diff.get("old_value")
         value1 = resolve_value(old_value, depth)
 
-        new_value = get_new_value(diff)
+        new_value = diff.get("new_value")
         value2 = resolve_value(new_value, depth)
         return f"{indent}- {key}: {value1}\n{indent}+ {key}: {value2}"
 
     elif is_nested(diff):
-        nested = get_nested(diff)
+        nested = diff.get("nested")
         value = resolve_value(nested, depth)
         return f"{indent}  {key}: {value}"
 
 
-def get_status(elem):
-    return elem["status"]
-
-
-def get_key(elem):
-    return elem["key"]
-
-
-def get_nested(elem):
-    return elem["nested"]
-
-
 def is_nested(elem):
     return elem.get("nested")
-
-
-def get_old_value(elem):
-    return elem["old_value"]
-
-
-def get_new_value(elem):
-    return elem["new_value"]
 
 
 def resolve_value(diff, depth):

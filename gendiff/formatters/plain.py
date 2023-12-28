@@ -1,16 +1,12 @@
 from gendiff.utils import resolve_none_and_boolean
 import os
-from gendiff.formatters.stylish import get_status, get_key, get_nested, \
-    is_nested, get_old_value, get_new_value
 
 
 def resolve_value(value):
     if isinstance(value, str):
         return f"'{value}'"
-
     elif isinstance(value, dict):
         return '[complex value]'
-
     return resolve_none_and_boolean(value)
 
 
@@ -19,10 +15,10 @@ def make_plain(diff):
 
     def walk(items, path):
         for item in items:
-            item_path = os.path.join(path, get_key(item))
+            item_path = os.path.join(path, item["key"])
             item_path = os.path.normpath(item_path).replace("/", ".")
-            if is_nested(item):
-                walk(get_nested(item), item_path)
+            if item.get("nested"):
+                walk(item["nested"], item_path)
             else:
                 lines.append(make_line(item, item_path))
 
@@ -32,13 +28,13 @@ def make_plain(diff):
 
 
 def make_line(item, path):
-    status = get_status(item)
+    status = item["status"]
     if status == 'added':
-        new_value = resolve_value(get_new_value(item))
+        new_value = resolve_value(item["new_value"])
         return f"Property '{path}' was added with value: {new_value}"
     elif status == 'removed':
         return f"Property '{path}' was removed"
     elif status == 'updated':
-        old_value = resolve_value(get_old_value(item))
-        new_value = resolve_value(get_new_value(item))
+        old_value = resolve_value(item["old_value"])
+        new_value = resolve_value(item["new_value"])
         return f"Property '{path}' was updated. From {old_value} to {new_value}"
