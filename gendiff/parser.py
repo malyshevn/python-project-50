@@ -15,7 +15,7 @@ def parser():
                         default="stylish",
                         choices=["stylish", "plain", "json"])
     args = parser.parse_args()
-    return args.first_file, args.second_file, args.format_name
+    return args.first_file, args.second_file, args.format
 
 
 def load_data(file_path):
