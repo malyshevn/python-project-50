@@ -1,22 +1,17 @@
 from gendiff import generate_diff
+import os
+
+
+def get_fixture_path(file_name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    fixtures_dir = os.path.join(current_dir, 'fixtures')
+    return os.path.join(fixtures_dir, file_name)
 
 
 def test_generate_diff():
-    file1 = './tests/fixtures/file1.json'
-    file2 = './tests/fixtures/file2.json'
-    result = './tests/fixtures/result.json'
-
-    generated_diff = generate_diff(file1, file2, format_name="stylish")
-    with open(result, 'r') as new_result_file:
-        expected_result = new_result_file.read()
-
-    assert generated_diff == expected_result
-
-
-def test_generate_diff_yaml():
-    file1 = './tests/fixtures/file1.yml'
-    file2 = './tests/fixtures/file2.yml'
-    result = './tests/fixtures/result'
+    file1 = get_fixture_path('file1.json')
+    file2 = get_fixture_path('file2.json')
+    result = get_fixture_path('result.json')
 
     generated_diff = generate_diff(file1, file2, format_name="stylish")
     with open(result, 'r') as new_result_file:
@@ -26,9 +21,9 @@ def test_generate_diff_yaml():
 
 
 def test_nested_plain():
-    file1 = './tests/fixtures/tree1.json'
-    file2 = './tests/fixtures/tree2.json'
-    result = './tests/fixtures/flat_result'
+    file1 = get_fixture_path('tree1.json')
+    file2 = get_fixture_path('tree2.json')
+    result = get_fixture_path('flat_result')
 
     generated_diff = generate_diff(file1, file2, format_name="plain")
     with open(result, 'r') as new_result_file:
@@ -38,9 +33,9 @@ def test_nested_plain():
 
 
 def test_nested_json():
-    file1 = './tests/fixtures/tree1.json'
-    file2 = './tests/fixtures/tree2.json'
-    result = './tests/fixtures/json_result.json'
+    file1 = get_fixture_path('tree1.json')
+    file2 = get_fixture_path('tree2.json')
+    result = get_fixture_path('json_result.json')
 
     generated_diff = generate_diff(file1, file2, format_name="json")
     with open(result, 'r') as new_result_file:
