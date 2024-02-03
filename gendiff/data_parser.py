@@ -3,17 +3,19 @@ import yaml
 import os
 
 
-def load_data(file_path):
-    _, extension = os.path.splitext(file_path)
-    extension = extension.lower()
+def get_extension(file):
+    _, extension = os.path.splitext(file)
+    return extension[1:]
 
-    if extension == '.json':
+
+def load_data(file_path):
+    ext = get_extension(file_path)
+
+    if ext == 'json':
         with open(file_path) as file:
             return json.load(file)
-    elif extension == '.yaml' or extension == '.yml':
+    elif ext == 'yaml' or ext == 'yml':
         with open(file_path) as file:
             return yaml.load(file, Loader=yaml.Loader)
     else:
-        raise ValueError(f'Unsupported file format: {extension}')
-
-# не совсем понял замечание, поэтому толком ничего не изменил в функции парсера
+        raise ValueError(f'Unsupported file format: {ext}')
