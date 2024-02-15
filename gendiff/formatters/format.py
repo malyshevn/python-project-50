@@ -11,3 +11,5 @@ def choose_format(data, format_name):
             return make_plain(data)
         case 'json':
             return make_json(data)
+        case _:
+            raise ValueError(f"Unknown format: {format_name}")
